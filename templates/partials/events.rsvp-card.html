@@ -11,18 +11,18 @@
                 <div class="media-content">
                     {% set date_parts = page.extra.event.date | split(pat="-") %}
                     <time>
-                        {{ 
+                        {{
                             date_macros::date_full(
-                            year=date_parts[0] | int,
-                            month=date_parts[1] | int,
-                            day=date_parts[2] | int)
+                              year=date_parts[0] | int,
+                              month=date_parts[1] | int,
+                              day=date_parts[2] | int)
                         }}
                         <br>
                         {% if 'start_time' in page.extra.event %}
-                            {{ page.extra.event['start_time'] }}
+                        {{ page.extra.event['start_time'] }}
                         {% endif %}
                         {% if 'stop_time' in page.extra.event %}
-                            - {{ page.extra.event['stop_time'] }}
+                        - {{ page.extra.event['stop_time'] }}
                         {% endif %}
                     </time>
                 </div>
@@ -38,11 +38,11 @@
                 <address class="event-address">
                     <span class="p-name">{{ page.extra.venue.name }}</span>
                     <span class="p-street-address">{{ page.extra.venue.address_street }}</span>
-                    
+
                     {% if page.extra.venue.address_unit %}
                     <span class="p-unit">{{ page.extra.venue.address_unit }}</span>
                     {% endif %}
-                    
+
                     <span>
                         <span class="p-locality p-city">{{ page.extra.venue.address_city}}</span>, <span class="p-zip-code">{{ page.extra.venue.address_zip }}</span>
                     </span>
@@ -59,6 +59,6 @@
                 </address>
             </div>
           </div>
-        </div>   
+        </div>
     </div>
 </div>

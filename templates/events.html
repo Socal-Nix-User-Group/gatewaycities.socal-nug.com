@@ -4,6 +4,20 @@
 {% block content %}
 
 <h1 class="title is-1 mb-3">Events</h1>
+<div class="add-to-calendar">
+  {% set ical_feed_url = config.base_url ~ '/events/calendar.ics' %}
+  {% set webcal_feed_url = config.base_url ~ '/events/calendar.ics' | replace(from='https:', to='webcal:') %}
+  {% set ical_feed_url_google = ical_feed_url | replace(from='https', to='http') %}
+  <a href="{{ ical_feed_url }}" class="button">
+    📅 Download ICS Feed
+  </a>
+  <a href="{{ webcal_feed_url }}" class="button">
+    📅 Download WebCal Feed
+  </a>
+  <a href="https://calendar.google.com/calendar/r?cid={{ ical_feed_url_google | safe }}" class="button">
+    📅 Add to Google Calendar
+  </a>
+</div>
 
 <div class="columns">
   <div class="column is-two-thirds">
@@ -27,8 +41,8 @@
       {% if current_year != date_parts[0] %}
       {% continue %}
       {% endif %}
-      <div class="event-listing-item" 
-        data-event-date="{{ page.extra.event.date }}" 
+      <div class="event-listing-item"
+        data-event-date="{{ page.extra.event.date }}"
         data-event-name="{{ page.title }}"
         data-event-location="{{ page.extra.venue.name }}"
         {% if page.extra.venue.google_maps %}
@@ -42,7 +56,7 @@
         {% if page.extra.event.stop_time %}
           data-event-stop-time="{{ page.extra.event.stop_time }}"
         {% endif %}
-        
+
         {% if page.extra.event.start_time %}
           data-event-start-time="{{ page.extra.event.start_time }}"
         {% endif %}
@@ -73,9 +87,9 @@
 
   </div>
   <div class="column is-third content">
-    <h2>What happens as a NUG meetup?</h2>
-    NUG meetups are informal meetups where we gather around and discuss our favorite package manager. 
-    Bring your laptop, show off your Nix configs, and ask questions. 
+    <h2>What happens at a NUG meetup?</h2>
+    NUG meetups are informal meetups where we gather around and discuss our favorite package manager.
+    Bring your laptop, show off your Nix configs, and ask questions.
     No prior experience with Nix is required, and all are welcome.
   </div>
 </div>
